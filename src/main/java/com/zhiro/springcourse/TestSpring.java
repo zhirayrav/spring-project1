@@ -12,7 +12,7 @@ public class TestSpring {
 		
 		MusicPlayer player = context.getBean("musicPlayer",MusicPlayer.class);
 //		ClassicalMusic classic2 = context.getBean("classicBean",ClassicalMusic.class);
-		player.playMusic(Genre.ROCK);
+		player.playMusic(Genre.CLASSIC);
 //		System.out.println(classic2.getSong());
 //		Music music = context.getBean("musicBean",Music.class);
 
@@ -24,7 +24,7 @@ public class TestSpring {
 //		player.playMusic();
 //		System.out.println(player.getName());
 //		System.out.println(player.getVolume());
-//		context.close();
+//		context.close();/*
 	}
 
 }
