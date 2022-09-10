@@ -1,5 +1,8 @@
 package com.zhiro.springcourse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +21,19 @@ public class SpringConfig {
 		return new RockMusic();
 	}
 	@Bean
+	public JazzMusic jazzMusic() {
+		return new JazzMusic();
+	}
+	@Bean
 	public MusicPlayer musicPlayer() {
-		return new MusicPlayer(rockMusic(), classicalMusic());
+		return new MusicPlayer(list());
+	}
+	@Bean
+	public List<Music> list(){
+		List<Music> list = new ArrayList<Music>();
+		list.add(classicalMusic());
+		list.add(rockMusic());
+		list.add(jazzMusic());
+		return list;
 	}
 }

@@ -1,5 +1,8 @@
 package com.zhiro.springcourse;
 
+import java.util.List;
+import java.util.Random;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -11,13 +14,7 @@ import org.springframework.stereotype.Component;
 
 public class MusicPlayer {
 
-	@Qualifier("classicalMusic")
-	private Music music1;
-	private Music music2;
-	@Value("${musicPlayer.name}")
-	private String name;
-	@Value("${musicPlayer.volume}")
-	private String volume;
+	List<Music> list;
 	
 	@PostConstruct
 	public void doInit() {
@@ -28,20 +25,12 @@ public class MusicPlayer {
 		System.out.println("doing destruction");
 	}
 	
-	public MusicPlayer(@Qualifier("classicalMusic")Music music1,@Qualifier("rockMusic")Music music2) {
-		this.music1 = music1;
-		this.music2 = music2;
+	public MusicPlayer(List<Music> list) {
+		this.list = list;
 	}
-	
 	
 	public void playMusic() {
-			System.out.println(music1.getSong() + " " + music2.getSong());
-	}
-	public String getName() {
-		return name;
-	}
-	public String getVolume() {
-		return volume;
+			System.out.println(list.get((new Random().nextInt(list.size()))).getSong());
 	}
 
 }
