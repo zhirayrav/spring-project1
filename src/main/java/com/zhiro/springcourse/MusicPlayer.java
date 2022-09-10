@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("singleton") //if "protopype" - method doDestroy() is not calling
 public class MusicPlayer {
-	@Autowired
+
 	@Qualifier("classicalMusic")
-	private Music music;
+	private Music music1;
+	private Music music2;
 	@Value("${musicPlayer.name}")
 	private String name;
 	@Value("${musicPlayer.volume}")
@@ -29,15 +28,14 @@ public class MusicPlayer {
 		System.out.println("doing destruction");
 	}
 	
-	public MusicPlayer() {}
-//	@Autowired
-//	public MusicPlayer(@Qualifier("classicalMusic")Music music) {
-//		this.music = music;
-//	}
+	public MusicPlayer(@Qualifier("classicalMusic")Music music1,@Qualifier("rockMusic")Music music2) {
+		this.music1 = music1;
+		this.music2 = music2;
+	}
 	
 	
 	public void playMusic() {
-			System.out.println(music.getSong());
+			System.out.println(music1.getSong() + " " + music2.getSong());
 	}
 	public String getName() {
 		return name;
